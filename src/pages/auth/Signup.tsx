@@ -11,24 +11,61 @@ const SignupPage = () => {
     jobRole: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError("");
 
-    // Simulate signup process
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/staff/register-staff",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Registration failed");
+      }
+
+      // Success - show modal
+      setShowSuccessModal(true);
+    } catch (err: any) {
+      setError(err.message || "An error occurred during registration");
+    } finally {
       setIsLoading(false);
-      console.log("Signup payload:", userData);
-      // You can redirect or show success message here
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
       [e.target.name]: e.target.value,
+    });
+    // Clear error when user starts typing
+    if (error) setError("");
+  };
+
+  const closeModal = () => {
+    setShowSuccessModal(false);
+    // Reset form
+    setUserData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      staffId: "",
+      jobRole: "",
     });
   };
 
@@ -47,6 +84,14 @@ const SignupPage = () => {
               Join the Cash Advance Monitoring System
             </p>
           </div>
+
+          {/* Error Message */}
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md">
+              <p className="text-sm">{error}</p>
+            </div>
+          )}
+
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -243,6 +288,44 @@ const SignupPage = () => {
           </p>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md mx-4">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-8 h-8 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                Account Registration Complete
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Your staff profile has been successfully created. Please contact
+                the IT department to receive your secure login credentials.
+              </p>
+              <button
+                onClick={closeModal}
+                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
