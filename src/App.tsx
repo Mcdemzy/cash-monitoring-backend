@@ -9,6 +9,7 @@ import RetirementPage from "./pages/retirement/RetirementPage";
 import ApprovalDashboard from "./pages/approval/ApprovalDashboard";
 import ReportsPage from "./pages/reports/ReportsPage";
 import SignupPage from "./pages/auth/Signup";
+import Test from "./pages/test/Test";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/test" element={<Test />} />
 
         {/* Dashboard routes wrapped in the layout */}
         <Route path="/dashboard" element={<DashboardLayout />}>
