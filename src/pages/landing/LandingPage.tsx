@@ -30,7 +30,7 @@ const LandingPage = () => {
             cash advances with transparency and efficiency.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/login" className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+            <Link to="/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
               Get Started
             </Link>
             <button className="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition-colors">
