@@ -22,7 +22,7 @@ const SignupPage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/staff/register-staff",
+        "https://cost-monitoring-backend-system.vercel.app/api/staff/register-staff",
         {
           method: "POST",
           headers: {

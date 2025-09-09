@@ -41,7 +41,9 @@ const Test = () => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("http://localhost:5000/api/staff");
+      const response = await fetch(
+        "https://cost-monitoring-backend-system.vercel.app/api/staff"
+      );
       const data = await response.json();
 
       if (!response.ok) {
@@ -67,7 +69,7 @@ const Test = () => {
     setError("");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/staff/search/${encodeURIComponent(
+        `https://cost-monitoring-backend-system.vercel.app/api/staff/search/${encodeURIComponent(
           searchQuery
         )}`
       );
@@ -92,13 +94,16 @@ const Test = () => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/staff/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://cost-monitoring-backend-system.vercel.app/api/staff/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -135,7 +140,7 @@ const Test = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/staff/${editingStaff._id}`,
+        `https://cost-monitoring-backend-system.vercel.app/api/staff/${editingStaff._id}`,
         {
           method: "PUT",
           headers: {
@@ -181,9 +186,12 @@ const Test = () => {
     setError("");
 
     try {
-      const response = await fetch(`http://localhost:5000/api/staff/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://cost-monitoring-backend-system.vercel.app/api/staff/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       const data = await response.json();
 
