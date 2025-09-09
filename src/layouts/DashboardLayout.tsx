@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [user, setUser] = useState({
+  const [user] = useState({
     name: "John Doe",
     role: "Regular Staff",
     email: "john.doe@company.com",

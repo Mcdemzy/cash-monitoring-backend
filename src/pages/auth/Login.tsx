@@ -28,7 +28,7 @@ const LoginPage = () => {
     });
   };
 
-  const demoLogin = (role: string) => {
+  const demoLogin = () => {
     setIsLoading(true);
     // Set user based on role
     setTimeout(() => {
@@ -173,14 +173,14 @@ const LoginPage = () => {
             <div className="mt-4 grid grid-cols-2 gap-3">
               <button
                 type="button"
-                onClick={() => demoLogin("Regular Staff")}
+                onClick={() => demoLogin()}
                 className="inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
                 Regular User
               </button>
               <button
                 type="button"
-                onClick={() => demoLogin("Finance Officer")}
+                onClick={() => demoLogin()}
                 className="inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
                 Finance Officer

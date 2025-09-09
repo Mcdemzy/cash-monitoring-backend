@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const RequestHistory = () => {
   // Mock data for demonstration
-  const [requests, setRequests] = useState([
+  const [requests] = useState([
     {
       id: "CA-0452",
       purpose: "Conference Travel",
